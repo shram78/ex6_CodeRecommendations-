@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private Enemy _enemyPrefab;
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private float _secondBetweenSpawn;
 
@@ -15,7 +15,7 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator SpawnEnemy()
     {
-        var waitForPerSeconds = new WaitForSeconds(_secondBetweenSpawn);
+        var waitForSeconds = new WaitForSeconds(_secondBetweenSpawn);
 
         do
         {
@@ -23,8 +23,8 @@ public class Spawner : MonoBehaviour
             {
                 Instantiate(_enemyPrefab, _spawnPoints[i]);
 
-                yield return waitForPerSeconds;
+                yield return waitForSeconds;
             }
-        } while (true); //для ментора: умышленно оставил бесконечный цикл, тк по условиям задания нет условий окончания спауна
+        } while (true); 
     }
 }
